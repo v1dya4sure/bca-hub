@@ -61,7 +61,37 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// IGNOU Custom Colors
+				ignou: {
+					blue: 'hsl(var(--ignou-blue))',
+					orange: 'hsl(var(--ignou-orange))',
+					'light-blue': 'hsl(var(--ignou-light-blue))'
+				},
+				semester: {
+					1: 'hsl(var(--sem1-color))',
+					2: 'hsl(var(--sem2-color))',
+					3: 'hsl(var(--sem3-color))',
+					4: 'hsl(var(--sem4-color))',
+					5: 'hsl(var(--sem5-color))',
+					6: 'hsl(var(--sem6-color))'
 				}
+			},
+			fontFamily: {
+				'inter': ['Inter', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+			},
+			backgroundImage: {
+				'gradient-hero': 'var(--gradient-hero)',
+				'gradient-card': 'var(--gradient-card)',
+			},
+			boxShadow: {
+				'card': 'var(--shadow-card)',
+				'elevated': 'var(--shadow-elevated)',
+				'glow': 'var(--shadow-glow)',
+			},
+			transitionTimingFunction: {
+				'smooth': 'cubic-bezier(0.4, 0, 0.2, 1)',
+				'bounce': 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
