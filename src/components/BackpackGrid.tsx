@@ -12,6 +12,12 @@ interface BackpackItem {
   img: string
   href: string
   bgColor: string
+  hasContent: {
+    notes: boolean
+    questionPapers: boolean
+    resources: boolean
+    syllabus: boolean
+  }
 }
 
 interface BackpackGridProps {
@@ -51,6 +57,9 @@ export function BackpackGrid({ items }: BackpackGridProps) {
           const colorKey = item.bgColor as keyof typeof semesterColors
           const bgColorClass = semesterColors[colorKey] || "bg-primary"
           
+          // Check if semester has any content
+          const hasAnyContent = Object.values(item.hasContent).some(Boolean)
+          
           return (
             <Link
               key={index}
@@ -60,6 +69,15 @@ export function BackpackGrid({ items }: BackpackGridProps) {
               <div className={`${bgColorClass} p-6 aspect-square flex flex-col items-center justify-center text-center relative`}>
                 {/* Background decoration */}
                 <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                {/* Content Tag */}
+                {hasAnyContent && (
+                  <div className="absolute top-2 right-2 z-20">
+                    <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-500 text-white shadow-sm">
+                      📚 Content
+                    </span>
+                  </div>
+                )}
                 
                 <img 
                   src={semesterImages[imageKey]} 

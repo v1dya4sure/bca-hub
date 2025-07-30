@@ -60,8 +60,7 @@ export function AppSidebar() {
                 <GraduationCap className="w-5 h-5 text-primary-foreground" />
               </div>
               <div className="flex flex-col">
-                <span className="text-sm font-semibold text-primary">IGNOU</span>
-                <span className="text-xs text-muted-foreground">BCA Kaksha</span>
+                <span className="text-xl text-muted-foreground">BCA</span>
               </div>
             </div>
           )}

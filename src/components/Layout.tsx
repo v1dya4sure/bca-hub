@@ -20,7 +20,7 @@ export function Layout({ children }: LayoutProps) {
             </SidebarTrigger>
             
             <div className="flex items-center gap-2">
-              <h1 className="text-lg font-semibold text-primary">IGNOU Ki BCA Kaksha</h1>
+              <h1 className="text-lg font-semibold text-primary">BCA</h1>
             </div>
           </header>
 

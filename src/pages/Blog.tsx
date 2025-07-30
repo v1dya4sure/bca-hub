@@ -8,7 +8,7 @@ const Blog = () => {
       id: 1,
       title: "Getting Started with BCA at IGNOU",
       excerpt: "Everything you need to know about starting your BCA journey at IGNOU.",
-      author: "Dilkhush Raj",
+      author: "Vidya Sagar",
       date: "2023-11-01",
       readTime: "5 min read"
     },
@@ -16,7 +16,7 @@ const Blog = () => {
       id: 2,
       title: "Study Tips for Programming Subjects",
       excerpt: "Effective strategies to excel in programming courses during your BCA.",
-      author: "Dilkhush Raj", 
+      author: "Vidya Sagar", 
       date: "2023-10-28",
       readTime: "7 min read"
     },
@@ -24,7 +24,7 @@ const Blog = () => {
       id: 3,
       title: "Project Ideas for Final Semester",
       excerpt: "Creative project ideas that will make your final semester project stand out.",
-      author: "Dilkhush Raj",
+      author: "Vidya Sagar",
       date: "2023-10-25", 
       readTime: "6 min read"
     }

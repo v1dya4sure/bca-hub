@@ -14,7 +14,7 @@ export function FooterBanner({ content }: FooterBannerProps) {
           <span className="text-xs text-muted-foreground">Made with</span>
           <span className="text-red-500">❤️</span>
           <span className="text-xs text-muted-foreground">by</span>
-          <span className="text-xs font-semibold text-primary">Dilkhush Raj</span>
+          <span className="text-xs font-semibold text-primary">Vidya Sagar</span>
         </div>
       </div>
     </div>
