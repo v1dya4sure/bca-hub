@@ -88,7 +88,8 @@ const Semester = () => {
       title: "Notes",
       icon: BookOpen,
       description: "Download lecture notes and study materials",
-      hasContent: semester.hasContent.notes
+      hasContent: semester.hasContent.notes,
+      onClick: () => id === "1" && navigate("/semester/1/notes")
     },
     {
       title: "Question Papers",

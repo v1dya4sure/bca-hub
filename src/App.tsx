@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Profile from "./pages/Profile";
 import Semester from "./pages/Semester";
 import Semester1Syllabus from "./pages/Semester1Syllabus";
+import Semester1Notes from "./pages/Semester1Notes";
 import Blog from "./pages/Blog";
 import NotFound from "./pages/NotFound";
 
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="/profile" element={<Profile />} />
           <Route path="/semester/:id" element={<Semester />} />
           <Route path="/semester/1/syllabus" element={<Semester1Syllabus />} />
+          <Route path="/semester/1/notes" element={<Semester1Notes />} />
           <Route path="/blog" element={<Blog />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
