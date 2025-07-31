@@ -1,36 +1,28 @@
 import { Layout } from "@/components/Layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { BookOpen, ArrowLeft, ExternalLink, X, Download } from "lucide-react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
 
-const Semester1Notes = () => {
+const GE1Notes = () => {
   const [selectedPreview, setSelectedPreview] = useState<string | null>(null)
-  const [selectedSubject, setSelectedSubject] = useState<any>(null)
+  const navigate = useNavigate()
   
-  const notesItems = [
+  const ge1Subjects = [
     {
       id: 1,
-      title: "AECC (Ability Enhancement Compulsory Course)",
-      code: "AECC",
-      description: "Comprehensive notes for Ability Enhancement Compulsory Course",
-      hasPreview: true,
-      notes: [
-        {
-          id: 1,
-          title: "AECC Notes",
-          description: "Comprehensive notes for Ability Enhancement Compulsory Course",
-          previewUrl: "https://drive.google.com/file/d/1MN_iuyPVkE_WrDlFzdBvjythbTVNawp5/view?usp=drive_link",
-          downloadUrl: "https://drive.google.com/uc?export=download&id=1MN_iuyPVkE_WrDlFzdBvjythbTVNawp5"
-        }
-      ]
+      title: "GE 1 Mathematics",
+      code: "GE 1 Mathematics",
+      description: "Mathematics Generic Elective course materials",
+      hasContent: false,
+      notes: []
     },
     {
       id: 2,
-      title: "Generic Elective (GE 1)",
-      code: "GE 1",
-      description: "Detailed notes for Generic Elective course",
-      hasPreview: true,
+      title: "GE 1 Physics",
+      code: "GE 1 Physics",
+      description: "Physics Generic Elective course materials",
+      hasContent: true,
       notes: [
         {
           id: 1,
@@ -124,46 +116,15 @@ const Semester1Notes = () => {
           downloadUrl: "https://drive.google.com/uc?export=download&id=1t-eGbCish4UadsRNMXGi7ah58fOsA6Jv"
         }
       ]
-    },
-    {
-      id: 3,
-      title: "Core Course (CC 1)",
-      code: "CC 1",
-      description: "Complete notes for Core Course 1",
-      hasPreview: false,
-      notes: []
-    },
-    {
-      id: 4,
-      title: "Core Course (CC 2)",
-      code: "CC 2",
-      description: "Comprehensive notes for Core Course 2",
-      hasPreview: false,
-      notes: []
-    },
-    {
-      id: 5,
-      title: "C-1 & C-2 Lab",
-      code: "C-1 & C-2 Lab",
-      description: "Practical notes and lab manuals for Core Course 1 and 2",
-      hasPreview: false,
-      notes: []
     }
   ]
 
-  const handleCardClick = (item: any) => {
-    if (item.hasPreview && item.notes.length > 0) {
-      setSelectedSubject(item)
+  const handleCardClick = (subject: any) => {
+    if (subject.hasContent && subject.notes.length > 0) {
+      if (subject.code === "GE 1 Physics") {
+        navigate("/semester/1/notes/ge1/physics")
+      }
     }
-  }
-
-  const handleDownload = (downloadUrl: string, title: string) => {
-    const link = document.createElement('a')
-    link.href = downloadUrl
-    link.download = `${title} Notes.pdf`
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
   }
 
   return (
@@ -172,34 +133,34 @@ const Semester1Notes = () => {
         {/* Header */}
         <div className="flex items-center gap-4 mb-8">
           <Link 
-            to="/semester/1" 
+            to="/semester/1/notes" 
             className="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
-            Back to Semester 1
+            Back to Semester 1 Notes
           </Link>
         </div>
 
         <div className="text-center mb-8">
           <div className="inline-block px-4 py-2 rounded-lg bg-semester-1 text-white mb-4">
-            <h1 className="text-3xl font-bold">Semester 1 Notes</h1>
+            <h1 className="text-3xl font-bold">GE 1 Notes</h1>
           </div>
-          <p className="text-muted-foreground">Download comprehensive study notes and materials for Semester 1</p>
+          <p className="text-muted-foreground">Generic Elective 1 - Study Materials</p>
         </div>
 
-        {/* Notes Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {notesItems.map((item) => (
+        {/* Subject Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {ge1Subjects.map((subject) => (
             <Card 
-              key={item.id} 
+              key={subject.id}
               className="shadow-card hover:shadow-elevated transition-shadow cursor-pointer group"
-              onClick={() => handleCardClick(item)}
+              onClick={() => handleCardClick(subject)}
             >
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 group-hover:text-primary transition-colors">
                   <BookOpen className="w-5 h-5" />
-                  {item.title}
-                  {item.hasPreview && (
+                  {subject.title}
+                  {subject.hasContent && (
                     <ExternalLink className="w-4 h-4 text-primary" />
                   )}
                 </CardTitle>
@@ -207,12 +168,12 @@ const Semester1Notes = () => {
               <CardContent>
                 <div className="mb-2">
                   <span className="inline-block px-2 py-1 bg-primary/10 text-primary text-xs font-semibold rounded">
-                    {item.code}
+                    {subject.code}
                   </span>
                 </div>
-                <p className="text-sm text-muted-foreground mb-4">{item.description}</p>
+                <p className="text-sm text-muted-foreground mb-4">{subject.description}</p>
                 
-                {item.hasPreview && item.notes.length > 0 ? (
+                {subject.hasContent && subject.notes.length > 0 ? (
                   <div className="text-center py-2">
                     <p className="text-xs text-primary font-medium">📚 Click to view notes</p>
                   </div>
@@ -226,80 +187,9 @@ const Semester1Notes = () => {
             </Card>
           ))}
         </div>
-
-        {/* Subject Notes Modal */}
-        {selectedSubject && (
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-            <div className="bg-background rounded-lg shadow-elevated w-full max-w-4xl max-h-[90vh] flex flex-col">
-              <div className="flex items-center justify-between p-4 border-b border-border">
-                <h3 className="text-lg font-semibold">
-                  {selectedSubject.title} - Notes
-                </h3>
-                <button
-                  onClick={() => setSelectedSubject(null)}
-                  className="p-2 hover:bg-accent rounded-md transition-colors"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-              <div className="flex-1 p-4 overflow-y-auto">
-                <div className="space-y-4">
-                  {selectedSubject.notes.map((note: any, index: number) => (
-                    <div key={index} className="border border-border rounded-lg p-4">
-                      <h4 className="text-lg font-medium mb-3">{note.title}</h4>
-                      <div className="flex gap-3">
-                        <button
-                          onClick={() => setSelectedPreview(note.previewUrl)}
-                          className="flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary text-sm font-medium rounded-md hover:bg-primary/20 transition-colors"
-                        >
-                          <ExternalLink className="w-4 h-4" />
-                          Preview Notes
-                        </button>
-                        <button
-                          onClick={() => handleDownload(note.downloadUrl, note.title)}
-                          className="flex items-center gap-2 px-4 py-2 bg-green-500 text-white text-sm font-medium rounded-md hover:bg-green-600 transition-colors"
-                        >
-                          <Download className="w-4 h-4" />
-                          Download Notes
-                        </button>
-                      </div>
-                      {note.description && (
-                        <p className="text-xs text-muted-foreground mt-2">{note.description}</p>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Preview Modal */}
-        {selectedPreview && (
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-            <div className="bg-background rounded-lg shadow-elevated w-full max-w-6xl h-[90vh] flex flex-col">
-              <div className="flex items-center justify-between p-4 border-b border-border">
-                <h3 className="text-lg font-semibold">Notes Preview</h3>
-                <button
-                  onClick={() => setSelectedPreview(null)}
-                  className="p-2 hover:bg-accent rounded-md transition-colors"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-              <div className="flex-1 p-4">
-                <iframe
-                  src={selectedPreview.replace('/view?usp=drive_link', '/preview')}
-                  className="w-full h-full border-0 rounded-md"
-                  title="Notes Document"
-                />
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </Layout>
   )
 }
 
-export default Semester1Notes 
+export default GE1Notes 
